@@ -4,6 +4,10 @@
   </head>
   <body>
     <?php 
+      $buscar = (isset($_POST["buscar"]) && $_POST["buscar"] != "")? $_POST['buscar'] : "no especifico";
+      $zonah = (isset($_POST['zonah']) && $_POST["zonah"] != "")? $_POST['zonah'] : "no especifico";
+      $mod = (isset($_POST['mod']) && $_POST["mod"] != "")? $_POST['mod'] : "no especifico";
+
       $long_texto=rand(300,500); 
       $long_identificador=rand(); 
       echo "Libro $long_identificador <br><br>"; 
@@ -25,7 +29,7 @@
           echo "<strong>$cadena </strong>";
         }
       }
-
+      echo "La fecha de consulta de este libro  fue $date a las $hrs en $ubi"
     ?> 
   </body>
 </html>

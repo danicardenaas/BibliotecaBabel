@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <form action="./index.php" method="POST" target= self>
+  <form action="./dynamics/index.php" method="POST" target= self>
     <fieldset>
       <legend><strong>Introduce tu búsqueda a la torre de babel</strong></legend>
       <label for="buscar">Buscar: </label>
@@ -22,11 +22,14 @@
         <option value="6">Chicago</option>
         <option value="7">México DF</option>
         <option value="8">Berlín</option>
-        <br><br>
-      <label for="mod">Modo </label>
+      </select><br><br>
+      <label for="mod">Modo: 
         <select name="mod">
-          <option value="4">Oracion</option>
-      <br><br>
+            <option value="Normal">Normal</option>
+            <option value="Orden">Orden</option>
+            <option value="Palabras">Palabras</option>
+        </select><br><br><br>
+    </label>
         <button type="submit">Enviar</button>
         <button type="reset">Reset</button>
       <br>                    
