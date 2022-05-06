@@ -30,36 +30,37 @@
 
       //Variables para generar números aleatorios
       $long_texto = rand(300, $longitud); //número de palabras en el texto
-      $long_identificador = rand(); //número aleatorio del título del libro
+      $long_identificador = rand(); //número aleatorio para números del título del libro
+      $long_id_caracter = rand(1, 5);//número aleatorio para caracteres del título del libro
       if($modo != "Palabras"){
           $insertar = rand(0, $long_texto); //número aleatorio para la colocación de la $frase
       }
 
       //Asigna valor a la frase según el modo
       if($modo == "Orden"){
-          sort($arr_frase); //Ordena el arreglo de la frase alfabéticamente
-          $frase = implode(" ", $arr_frase); //Guarda el arreglo ordenado en la frase
+        sort($arr_frase); //Ordena el arreglo de la frase alfabéticamente
+        $frase = implode(" ", $arr_frase); //Guarda el arreglo ordenado en la frase
       }
       if($modo == "Palabras"){
-          //Obtener n números aleatorios diferentes (según el #palabras)
-          for($i=0; $i<$num_palabras; $i++){
-              do {
-                  $booleano = true;
-                  //Genera número aleatorio
-                  $arr_insertar[$i] = rand (0, $long_texto);
-                  //Comprueba que sean diferentes
-                  if($i > 0){
-                      for($j=0; $j<(count($arr_insertar)-1); $j++){
-                          if($arr_insertar[$i] == $arr_insertar[$j]){
-                              $booleano = false;
-                              $j = count($arr_insertar);
-                          }
-                      }
-                  }
-              } while ($booleano == false);
-          }
-          //Ordena arreglo de números aleatorios de menor a mayor
-          sort($arr_insertar);
+        //Obtener n números aleatorios diferentes (según el #palabras)
+        for($i=0; $i<$num_palabras; $i++){
+          do {
+            $booleano = true;
+            //Genera número aleatorio
+            $arr_insertar[$i] = rand (0, $long_texto);
+            //Comprueba que sean diferentes
+            if($i > 0){
+              for($j=0; $j<(count($arr_insertar)-1); $j++){
+                if($arr_insertar[$i] == $arr_insertar[$j]){
+                  $booleano = false;
+                  $j = count($arr_insertar);
+                }
+              }
+            }
+          } while ($booleano == false);
+        }
+        //Ordena arreglo de números aleatorios de menor a mayor
+        sort($arr_insertar);
       }
 
       if($zonah=='valor1')
@@ -70,13 +71,13 @@
           //Europe/Kiev
       if($zonah=='valor3')
         date_default_timezone_set("Africa/Cairo"); 
-          //	Africa/Cairo
+          //Africa/Cairo
       if($zonah=='valor4')
         date_default_timezone_set("America/Mexico_City"); 
           //America/Mexico_City
       if($zonah=='valor5')
         date_default_timezone_set("Indian/Maldives"); 
-          //	Indian/Maldives
+          //Indian/Maldives
 
       //Asignaciones tiempo
       $zonahoraria = date_default_timezone_get(); 
@@ -89,14 +90,20 @@
         $existe_fecha = checkdate($dia, $mes, $año);
       }
       while($existe_fecha != "true");
-
       $hora = date('h:i:s a'); 
 
       //Despliegue de datos
       echo '<table border="1" cellpadding="20px">';
         echo '<thead>';
           echo '<tr>';
-            echo "<th><h1>Libro $long_identificador</h1></th>";
+            echo "<th>
+              <h1>Libro $long_identificador";
+              for($m=0; $m<$long_id_caracter; $m++){
+                $ascii = rand(65, 90); //número aleatorio para el carácter
+                $letra = chr($ascii); 
+                echo "$letra"; 
+              }
+            echo "</h1></th>";
           echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -106,27 +113,27 @@
                 $long_palabra = rand(4,10); //número aleatorio para la longitud de la palabra
                 
                 for($p=0; $p<$long_palabra; $p++){
-                    $ascii = rand(97, 122); //número aleatorio para el carácter de la palabra
-                    $letra = chr($ascii); 
-                    echo "$letra"; 
+                  $ascii = rand(97, 122); //número aleatorio para el carácter de la palabra
+                  $letra = chr($ascii); 
+                  echo "$letra"; 
                 }
                 echo " ";
         
                 if($modo != "Palabras"){
-                    if($i == $insertar){
-                        echo "<strong>$frase </strong>";
-                    }
+                  if($i == $insertar){
+                    echo "<strong>$frase </strong>";
+                  }
                 } else {
-                    if($i == $arr_insertar[$cont1])
-                    {
-                        echo "<strong>$arr_frase[$cont2] </strong>";
-                        if($cont1 < (count($arr_insertar) - 1)){
-                            +$cont1++;
-                        }
-                        if($cont2 < (count($arr_frase) - 1)){
-                            +$cont2++;
-                        }
+                  if($i == $arr_insertar[$cont1])
+                  {
+                    echo "<strong>$arr_frase[$cont2] </strong>";
+                    if($cont1 < (count($arr_insertar) - 1)){
+                      +$cont1++;
                     }
+                    if($cont2 < (count($arr_frase) - 1)){
+                      +$cont2++;
+                    }
+                  }
                 }
               }
             echo "</td>";
@@ -136,7 +143,7 @@
       echo '<h2>Fecha Real:</h2>';
       echo "<em>La fecha de consulta de este libro fue el $fecha en $zonahoraria</em>";
       echo '<h2>Fecha Aleatoria:</h2>';
-      echo "<em>La fecha de consulta de este libro el día $dia del mes de $mes del año $año a las $hora en $zonahoraria</em>"; 
+      echo "<em>La fecha de consulta de este libro fue el día $dia del mes $mes del año $año a las $hora en $zonahoraria</em>"; 
     ?> 
   </body>
 </html>
