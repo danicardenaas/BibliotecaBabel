@@ -1,40 +1,37 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de babel</title>
 </head>
-
 <body>
   <form action="./dynamics/index.php" method="POST" target= self>
-    <fieldset>
-      <legend><strong>Introduce tu búsqueda a la torre de babel</strong></legend>
+    <fieldset style="width: 400px;">
+      <legend><strong>Introduce tu búsqueda a la torre de babel</strong></legend><br>
       <label for="buscar">Buscar: </label>
-      <input type="text" id="buscar" name=buscar">
-      <br><br>
+        <input type="text" id="buscar" name="buscar" placeholder="Introduce una búsqueda" autofocus>
+        <br><br>
       <label for="zonah">Zona horaria de tu preferencia </label>
-      <select name="zonah">
-        <option value="4">New York</option>
-        <option value="5">Washington</option>
-        <option value="6">Chicago</option>
-        <option value="7">México DF</option>
-        <option value="8">Berlín</option>
-      </select><br><br>
+        <select name="zonah" id="zonah">
+          <option>New York</option>
+          <option>Washington</option>
+          <option>Chicago</option>
+          <option>México DF</option>
+          <option>Berlín</option>
+        </select><br><br>
       <label for="mod">Modo: 
-        <select name="mod">
-            <option value="Normal">Normal</option>
-            <option value="Orden">Orden</option>
-            <option value="Palabras">Palabras</option>
+        <select name="mod" id="mod">
+            <option>Normal</option>
+            <option>Orden</option>
+            <option>Palabras</option>
         </select><br><br><br>
-    </label>
-        <button type="submit">Enviar</button>
-        <button type="reset">Reset</button>
+      </label>
+      <button type="submit">Enviar</button>
+      <button type="reset">Reset</button>
       <br>                    
     </fieldset>
   </form>
 </body>
-
 </html>
