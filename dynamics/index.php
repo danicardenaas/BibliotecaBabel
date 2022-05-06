@@ -62,36 +62,81 @@
           sort($arr_insertar);
       }
 
-      //Despliegue de datos
-      echo "Libro $long_identificador <br><br>";
-      for($i=0; $i<$long_texto; $i++){
-          $long_palabra = rand(4,10); //número aleatorio para la longitud de la palabra
-          
-          for($p=0; $p<$long_palabra; $p++){
-              $ascii = rand(97, 122); //número aleatorio para el carácter de la palabra
-              $letra = chr($ascii); 
-              echo "$letra"; 
-          }
-          echo " ";
+      if($zonah=='valor1')
+        date_default_timezone_set("America_NewYork"); 
+          //America_NewYork
+      if($zonah=='valor2')
+        date_default_timezone_set("Europe/Kiev"); 
+          //Europe/Kiev
+      if($zonah=='valor3')
+        date_default_timezone_set("Africa/Cairo"); 
+          //	Africa/Cairo
+      if($zonah=='valor4')
+        date_default_timezone_set("America/Mexico_City"); 
+          //America/Mexico_City
+      if($zonah=='valor5')
+        date_default_timezone_set("Indian/Maldives"); 
+          //	Indian/Maldives
 
-          if($modo != "Palabras"){
-              if($i == $insertar){
-                  echo "<strong>$frase </strong>";
-              }
-          } else {
-              if($i == $arr_insertar[$cont1])
-              {
-                  echo "<strong>$arr_frase[$cont2] </strong>";
-                  if($cont1 < (count($arr_insertar) - 1)){
-                      +$cont1++;
-                  }
-                  if($cont2 < (count($arr_frase) - 1)){
-                      +$cont2++;
-                  }
-              }
-          }
+      //Asignaciones tiempo
+      $zonahoraria = date_default_timezone_get(); 
+      $fecha = date('d-m-y h:i:s a');
+      do
+      {
+        $dia = rand(1,31); //fecha aleatoria
+        $mes = rand(1,12); 
+        $año = rand(1,2022); 
+        $existe_fecha = checkdate($dia, $mes, $año);
       }
-      echo "La fecha de consulta de este libro  fue $date a las $hrs en $ubi"
+      while($existe_fecha != "true");
+
+      $hora = date('h:i:s a'); 
+
+      //Despliegue de datos
+      echo '<table border="1" cellpadding="20px">';
+        echo '<thead>';
+          echo '<tr>';
+            echo "<th><h1>Libro $long_identificador</h1></th>";
+          echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+          echo '<tr>';
+            echo "<td style='text-align:justify'>";
+              for($i=0; $i<$long_texto; $i++){
+                $long_palabra = rand(4,10); //número aleatorio para la longitud de la palabra
+                
+                for($p=0; $p<$long_palabra; $p++){
+                    $ascii = rand(97, 122); //número aleatorio para el carácter de la palabra
+                    $letra = chr($ascii); 
+                    echo "$letra"; 
+                }
+                echo " ";
+        
+                if($modo != "Palabras"){
+                    if($i == $insertar){
+                        echo "<strong>$frase </strong>";
+                    }
+                } else {
+                    if($i == $arr_insertar[$cont1])
+                    {
+                        echo "<strong>$arr_frase[$cont2] </strong>";
+                        if($cont1 < (count($arr_insertar) - 1)){
+                            +$cont1++;
+                        }
+                        if($cont2 < (count($arr_frase) - 1)){
+                            +$cont2++;
+                        }
+                    }
+                }
+              }
+            echo "</td>";
+          echo '</tr>';
+        echo '</body>';
+      echo '</table>';
+      echo '<h2>Fecha Real:</h2>';
+      echo "<em>La fecha de consulta de este libro fue el $fecha en $zonahoraria</em>";
+      echo '<h2>Fecha Aleatoria:</h2>';
+      echo "<em>La fecha de consulta de este libro el día $dia del mes de $mes del año $año a las $hora en $zonahoraria</em>"; 
     ?> 
   </body>
 </html>
