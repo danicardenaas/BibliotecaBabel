@@ -63,7 +63,7 @@
       }
 
       if($zonah=='valor1')
-        date_default_timezone_set("America_NewYork"); 
+        date_default_timezone_set("America/New_York"); 
           //America_NewYork
       if($zonah=='valor2')
         date_default_timezone_set("Europe/Kiev"); 
